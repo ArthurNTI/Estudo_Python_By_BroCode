@@ -731,4 +731,7 @@ elif jogador == "papel":
 
 # QUIZ GAME #
 
-print('Doidera !!')
+
+
+
+Ela ta maluca pae
