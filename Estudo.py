@@ -33,7 +33,7 @@
 
 # FIM#
 
-# STRING METODS#
+# STRING METHODS#
 
 # nome = "Aratu"
 # print(len(nome)) : Tamanho da string
@@ -728,10 +728,755 @@ elif jogador == "papel":
 
 # TENTAR DIMINUIR CODIGO ACIMA COM FUNCOES !!!
 
-
 # QUIZ GAME #
+'''
+#--------------------
+def novo_jogo():
+    palpites = []
+    palpites_corretos = 0
+    questao_numero = 1
+
+    for key in questoes:
+        print("--------------------")
+        print(key)
+        for i in opcoes[questao_numero-1]:
+            print(i)
+        palpite = input("Escolha (A,B,C ou D): ")
+        palpite = palpite.upper()
+        palpites.append(palpite)
+
+        palpites_corretos += checar_resposta(questoes.get(key),palpite)
+        questao_numero += 1    
+
+    mostrar_pontuacao(palpites_corretos, palpites)
+#--------------------
+def checar_resposta(palpites_corretos, palpite):
+    
+    if palpites_corretos == palpite:
+        print("Correto !")
+        return 1
+    else:
+        print("Errado !")    
+        return 0
+#--------------------
+def mostrar_pontuacao(palpites_corretos, palpites):
+    print("---------------")
+    print("RESULTADOS")
+    print("---------------")
+
+    print("Respostas: ", end=" ")
+    for i in questoes:
+        print(questoes.get(i),end=" ")
+    print()
+
+    print("Perguntas: ", end="")
+    for i in palpites:
+        print(i,end=" ")
+    print()
+
+    pontuacao = int((palpites_corretos/len(questoes)*100))
+    print("Sua pontuacão é: "+str(pontuacao)+"%")
+#--------------------
+def jogar_novamente():
+
+    resposta = input("Voce deseja jogar novamente ? (sim ou nao) :")
+    resposta = resposta.upper()
+
+    if resposta == "SIM":
+        return True
+    else: 
+        return False
+#--------------------
+
+questoes = {
+    "Quem criou o Python ?: " : "A",
+    "Que ano o Python foi criado ?: " : "B",
+    "Python foi uma homenagem a que grupo de comédia ?: " : "C",
+    "A terra é redonda ?: ": "A"
+}
+
+opcoes = [["A. Guido Van Rossum", "B. Elon Musk", "C. Bill Gates", "D. Mark Zuckerburg"],
+    ["A. 1989", "B. 1991", "C. 2000", "D. 2016"],
+    ["A. Lonely Island", "B. Smosh", "C. Monty Python", "D. SNL"],
+    ["A. Verdadeiro", "B. Falso", "C. As vezes", "D. O que é Terra ?"]]
+
+novo_jogo()
+
+while jogar_novamente():
+    novo_jogo()
+
+print("Adeus")    
+    
+'''
+
+# FIM #
+
+# OBJECT ORIENTED PROGRAMMING # (OOP)
+'''
+class Car: #Car tera um C maiusculo #Se criar uma classe em outro modulo tera que chamar com uma funcao. Exemplo : "from car import Car"
+    
+
+    def __init__(self,fazer,modelo,ano,cor):
+        self.fazer = fazer
+        self.modelo = modelo
+        self.ano = ano
+        self.cor = cor
+
+    def dirigir(self):
+        print("Esse "+self.modelo+" esta em movimento")
+
+    def parar(self): 
+        print("Esse "+self.modelo+" esta parado")    
 
 
+carro_1 = Car("Chevy","Corvette","2021","blue")
+carro_2 = Car("Ford","Mustang","2022","red")
+
+#print(carro_2.fazer)
+#print(carro_2.modelo)
+#print(carro_2.ano)
+#print(carro_2.cor)
+
+carro_1.dirigir()
+carro_2.parar()
+'''
+
+# FIM #
+
+# Class variable #
+'''
+class Car:
+
+    rodas = 4 #Variavel de classe
+
+    def __init__(self,fazer,modelo,ano,cor):
+        self.fazer = fazer #Varivavel de instancia
+        self.modelo = modelo #Varivavel de instancia
+        self.ano = ano #Varivavel de instancia
+        self.cor = cor #Varivavel de instancia
+
+    def dirigir(self):
+        print("Esse "+self.modelo+" esta em movimento")
+
+    def parar(self): 
+        print("Esse "+self.modelo+" esta parado")    
 
 
-Ela ta maluca pae
+carro_1 = Car("Chevy","Corvette","2021","blue")
+carro_2 = Car("Ford","Mustang","2022","red")
+
+
+#print(carro_2.rodas)
+#print(Car.rodas)
+'''
+
+# FIM #
+
+# Inheritance # : Herança
+'''
+class Animais: #Criando classe, sempre o inicio do nome na classe letra maiuscula
+
+    vivo = True
+
+    def comendo(self): #Funcoes globais
+        print("Esse animal esta comendo ")
+    def dormindo(self): #Funcoes globais
+        print("Esse animal esta dormindo ")    
+
+class Coelho(Animais): #Dessa forma cada classe pode ter suas funcoes separadamente
+    def correr(self):
+        print("Esse animal esta correndo")
+
+class Peixe(Animais): 
+    def nadar(self):
+        print("Esse animal esta nadando")
+
+class Aguia(Animais):
+    def voar(self):
+        print("Esse animal esta correndo")
+
+coelho = Coelho()
+peixe = Peixe()
+aguia = Aguia()
+
+print(coelho.vivo)
+peixe.comendo()
+aguia.dormindo()
+'''
+
+# FIM #
+
+# Multiple level Inheritance # : Heranca entre mais de uma classe
+
+'''
+class Organismo:
+    vivo = True
+
+class Animal(Organismo):    
+    
+    def eat(self):
+        print("Esse animal esta comendo")
+
+class Cachorro(Animal):
+
+    def latindo(self):
+        print("Esse cachorro esta latindo")        
+
+cachorro = Cachorro()
+print(cachorro.vivo)
+cachorro.eat()
+cachorro.latindo()
+'''
+
+# CONTINUA ABAIXO # Heranca acontecendo mais de 2 vezes
+
+'''
+class Presa:
+
+    def fugir(self):
+        print("Esse animal foge")
+
+class Predador:
+
+    def caça(self):
+        print("Esse animal caça")
+
+class Coelho(Presa):
+    pass
+
+class Aguia(Predador):
+    pass
+
+class Peixe(Predador,Presa):
+    pass
+
+coelho = Coelho()
+aguia = Aguia()
+peixe = Peixe()
+
+coelho.fugir()
+aguia.caça()
+peixe.caça()
+peixe.fugir()
+'''
+
+# Method overriding # : Metodo de substituicao, funciona matematicamente como parenteses,
+# sempre oque esta mais a dentro tem a prioridade
+
+'''
+class Animal:
+    def comer(self):
+        print("Esse animal esta comendo")
+
+class Coelho(Animal):
+    def comer(self):
+        print("Esse animal come cenouras")
+
+coelho = Coelho()
+coelho.comer()
+'''
+
+# FIM #
+
+
+# Method chaining # :Encadeamento de método
+'''
+class Carro:
+
+    def ligar(self):
+        print("Voce ligou o carro")
+        return self
+
+    def dirigir(self):
+        print("Voce esta dirigindo o carro")  
+        return self
+
+    def freiar(self):
+        print("Voce esta freiando o carro") 
+        return self
+
+    def desligar(self):
+        print("Voce esta desligando o carro")  
+        return self
+
+carro = Carro()   
+
+#carro.ligar() #Normalmente seria feito dessa maneira.
+#carro.dirigir()
+
+#carro.ligar().dirigir() #Para encadeamento de metodos é necessario dentro da função adicionar
+# "return self", dessa forma seria como se voce estivesse digitando carro.ligar(),carro.dirigir()
+
+#carro.freiar().desligar()
+carro.ligar().dirigir().freiar().desligar()
+'''
+
+# FIM #
+
+# Super function # : Funcao usada para ter acesso aos metodos de uma classe superior
+
+'''
+class Retangulo:
+
+    def __init__(self, largura,altura):
+        self.largura = largura
+        self.altura =altura
+    
+class Quadrado(Retangulo):
+    def __init__(self, largura,altura):
+        super().__init__(largura,altura)
+
+    def area(self):
+        return self.largura*self.altura
+
+class Cubo(Retangulo):
+    
+    def __init__(self,largura,altura,grossura) :
+        super().__init__(largura,altura)
+        self.grossura = grossura
+
+    def volume(self):
+        return self.largura*self.altura*self.grossura
+
+quadrado = Quadrado(3, 3)
+cubo = Cubo(3, 3, 3)
+
+print(quadrado.area())
+print(cubo.volume())
+'''
+
+# Abstract Classes #  :Uma classe que contém um ou mais métodos abstratos
+'''
+
+from abc import ABC, abstractmethod
+class Veiculo(ABC):
+
+    @abstractmethod  # Metodos abstratos previnem de em alguma clase herdeira ficar devendo requisitos, previnir que "child" classes nao estao faltando implementacoes que elas herdam
+    def ir(self):
+        pass
+
+    @abstractmethod  # Usando esse metodo voce garante que as outras classes herdeiras nao estao faltando implementacoes, 'same as above but with ma words'
+    def parar(self):
+        pass
+
+
+class Carro(Veiculo):
+
+    def ir(self):
+        print("Voce esta dirigindo o carro")
+
+    def parar(self):
+        print("Esse carro esta parado")
+
+
+class Moto(Veiculo):
+
+    def ir(self):
+        print("Voce esta dirigindo a moto")
+
+    def parar(self):
+        print("Essa moto esta parada")
+
+
+# veiculo = Veiculo()
+carro = Carro()
+moto = Moto()
+
+# veiculo.ir()
+carro.parar()
+moto.parar()
+'''
+
+# FIM #
+
+# Objects as arguments #
+
+'''
+class Carro:
+    cor = None
+
+class Moto:
+    cor = None
+
+def mudar_cor(carro, cor):
+    carro.cor = cor
+
+carro_1 = Carro()
+carro_2 = Carro()
+carro_3 = Carro()
+
+moto_1 = Moto()
+
+mudar_cor(carro_1, "Vermelho")
+mudar_cor(carro_2, "Branco")
+mudar_cor(carro_3, "Azul")
+mudar_cor(moto_1, "Azul")
+
+print(carro_1.cor)
+print(carro_2.cor)
+print(carro_3.cor)
+print(moto_1.cor)
+'''
+
+# Exercicio # Deu certo :) same as above but improved
+
+'''
+class Carro:
+    cor = None
+
+carro = Carro()
+
+carro = input("Qual carro voce deseja selecionar a cor ? :")
+cor = input("Qual cor voce deseja ? :")
+
+def mudar_cor(carro, cor):
+
+    carro.cor = cor
+
+print("O carro selecionado foi: "+carro.capitalize()+" e a cor escolhida foi: "+cor.capitalize())
+'''
+
+# FIM #
+
+# Duck typing # : é o conceito onde a classe de um objeto que é menos importante que metodos ou atributos, tipo da classe não é checada se os metodos/atributos minimos estão presentes
+# "Se anda como um pato, e fala como um pato, provavelmente isso é um pato."
+# Se duas classes possuem as mesmas caracteristicas voce consegue chamar ambas em outra classe (foi oque entendi)
+
+'''
+class Pato:
+
+    def caminhar(self):
+        print("O pato esta caminhando")
+
+    def falar(self):
+        print("O pato esta quackando 'quack'")    
+
+class Galinha:
+    def caminhar(self):
+        print("A galinha esta caminhando")
+
+    def falar(self):
+        print("A galinha esta cantando")                  
+
+class Pessoa():
+    def catch(self,pato):
+        pato.caminhar()
+        pato.falar()
+        print("Voce pegou o pato")
+
+pato = Pato()
+galinha = Galinha()
+pessoa = Pessoa()
+
+pessoa.catch(galinha)'''
+
+# FIM #
+
+# Waltus operetor # " := " assigment, atribui valores para variaveis como parte de uma expressao mais longa
+
+# feliz = True
+# print(feliz)
+
+# print(happy := True)
+
+#Forma abaixo sem o uso do operador Waltus
+'''
+comidas = list()
+while True:
+    comida = input("Que comida voce  gosta ?para sair digite: sair: ")
+    if comida == "sair":
+        break
+    comidas.append(comida)
+
+print(comidas)   
+'''
+#Codigo sigma abaixo
+'''
+comidas = list()
+while comida := input("Que comida voce gosta ? Ou digite sair para cancelar : ") != "sair":
+    comidas.append(comida)
+'''
+
+# FIM #
+
+# Function to variables #
+'''
+def ola():
+    print("Ola")
+    
+oi = ola
+oi()
+ola()
+
+falar = print
+print("Wow")
+'''
+
+# High Order Function # : Uma funcao que :        
+#                       1. aceita uma funcao como argumento
+#                          ou
+#                       2. retorna a funcao
+#                       (No python, funcoes tambem sao tratadas como objetos)
+
+'''
+def alto(text):
+    return text.upper()
+
+def baixo(text):
+    return text.lower()
+
+def ola(func):
+    text = func("Ola")
+    print(text)    
+
+ola(baixo)    
+ola(alto)    
+'''
+
+'''
+def divisor(x):
+    def dividendo(y):
+        return y / x
+    return dividendo
+
+dividir = divisor(2) #x
+print(dividir(10)) #y
+'''
+
+# FIM #
+
+# Lambda fuction # : Funcao escrita em uma linha usando a palavra lambda, aceitar qualquer quantidade de argumentos, mas em apenas uma expressao, (use como um atalho),(util se é necessario para um curto periodo de tempo)
+# lambda parametros:expressao
+
+'''
+dobrar = lambda x:x * 2
+multiplicar = lambda x,y: x * y 
+adicionar = lambda x, y, z: x + y + z
+nome_completo = lambda primeiro_nome, ultimo_nome: primeiro_nome + " " + ultimo_nome
+idade_check = lambda idade:True if idade >= 18 else False
+print(idade_check(18))
+
+'''
+
+# FIM #
+
+# sort() method # = usado para listas, metodo para ordenar listas
+# sort() function # = usado para iteraveis(iteravel = consegue se multiplicar)
+'''
+estudantes = ["Arthur","Ana","Ivanete","Danilo","Maria"]
+
+#estudantes.sort(reverse=True)
+estudantes_ordenados = sorted(estudantes,reverse=True)
+
+for i in estudantes_ordenados:
+    print (i)
+'''
+'''
+familia =    [("Arthur","M","18"),
+             ("Ana","F","15"),
+             ("Ivanete","F","48"),
+             ("Danilo","M","78"),
+             ("Maria","F","76")5]
+
+idade = lambda idade:idade[2] 
+# familia.sort(key=idade)
+sorted_familia = sorted(familia,key=idade)
+
+for i in sorted_familia:
+    print(i)
+    '''
+
+# Map function # : aplica uma funcao para cada item de uma iteravel(list,tuple,etc...)
+
+# map(function,iterable)
+'''
+loja = [("camisa",20.00),
+        ("calca",15.00),
+        ("meias",7.00),
+        ("tenis",25.00)]
+
+para_reais = lambda x: (x[0],x[1]*5.20)
+
+loja_reais = list(map(para_reais, loja))
+
+for i in loja_reais:
+    print (i)
+'''
+
+# FIM 
+
+# Filter fuction : Funcao que retorna apenas os valores true
+'''
+pessoas = [("Artu",18),
+           ("Jacare",15),
+           ("Tatu",20),
+           ("Alemao",12)]
+
+idade = lambda x : x[1] >= 18
+podem_beber = list(filter(idade,pessoas))
+
+for i in podem_beber:
+    print(i)
+'''
+
+# FIM #
+
+# Reduce function # 
+
+
+#import functools
+
+'''
+letras = ["H","E","L","L","O"]
+
+palavra  = functools.reduce(lambda x, y: x + y, letras)
+print(palavra)
+'''
+
+'''
+fatorial =[5,4,3,2,1]
+resultado = functools.reduce(lambda x ,y :x*y, fatorial)
+print(resultado)
+'''
+
+# FIM #
+
+# Compreensao de lista # : Um metodo para criar uma nova lista com menos sintaxe, consegue imitar algumas funcoes lambda, facil de entender, lista = [expressao for item in iteravel]
+
+'''quadrados = [] #Criando uma lista vazia
+for i in range(1,11): #Criando um loop ate um numero delimitado
+    quadrados.append(i * i) #Define oque cada loop fara com a funcao, nesse caso, pegar o quadrado do numero descrito pelo loop e adicionar para a lista quadrados
+print(quadrados)'''
+
+'''
+quadrados = [i * i for i in range(1,11)] 
+print(quadrados)
+'''
+
+#estudantes = [100,90,80,70,60,50,40,30,20,10,0]
+
+''' Metodo maior, mais linha, menos desempenho
+estudantes_aprovados = list(filter(lambda x:x >= 60, estudantes))
+print(estudantes_aprovados)
+'''
+
+''' Usando novo metodo
+estudantes_aprovados = [i for i in estudantes if i >= 60]
+print(estudantes_aprovados)
+'''
+
+''' Exemplo 2 novo metodo
+estudantes_aprovados = [i if i >= 60 else "Desaprovado" for i in estudantes ]   
+print(estudantes_aprovados)
+'''
+
+# FIM #
+
+# Compreensao de dicionarios # :Um metodo para criar um dicionario usando uma expressao e ele pode fazer o papel de for loops e algumas funcoes lambda. 
+# dictionary = {key: (expression) for (key,value) in iterable}
+
+"""
+cidades_em_fahrenheit = {'Nova Iorque': 32,
+                        'Boston': 75,
+                        'Los Angeles' : 100 ,
+                        'Chigaco' : 50}
+
+cidades_em_graus = {key: round((value-32)*(5/9)) for (key,value) in cidades_em_fahrenheit.items()}
+
+print(cidades_em_graus)
+"""
+
+"""
+clima_cidades = {'Nova Iorque': 0, 'Boston': 24, 'Los Angeles': 38, 'Chicado': 10}
+
+cidades_ensolaradas = {key: ("Quente" if value >= 25 else "Frio") for (key,value) in clima_cidades.items()}
+
+print(cidades_ensolaradas)
+"""
+'''
+def check_temp(value): 
+    if value >= 22:
+        return "Quente"
+    elif 69.8>= value >= 4:
+        return "Morno"
+    else: 
+        return "Frio"
+
+clima_cidades = {'Nova Iorque': 0, 'Boston': 24, 'Los Angeles': 38, 'Chicado': 10}
+cidades_ensolaradas = {key: check_temp(value) for (key,value) in clima_cidades.items()}
+
+print(cidades_ensolaradas)
+'''
+
+# FIM #
+
+# Zip Function # : A funcao zip ira agregar elementos de uma ou mais iteraveis(lists,tuples,sets,etc...) 
+# Essa funcao ira criar um objeto zip com elementos emparelhados armazenando os em um tuple para cada elemento dentro de um objeto zip
+# zip(*iterables)
+
+'''
+usernames = ["Arthur","Jailson","Jare"]
+passwords = ("p@ssword","abc123","Guest")
+data_login = ["17/11/2004","30/06/2007","1/1/2023"]
+
+users = zip(usernames,passwords,data_login)
+
+for i in users:
+    print (i)
+'''
+
+# FIM #
+
+# if _name__ == '__main__': : Metodo para saber em qual modulo esta operando o programa
+
+#import modulo_2
+
+#print(__name__)
+#print(modulo_2.__name__)
+
+'''
+if __name__ == '__main__':
+    print("Esse programa esta operando diretamente neste modulo")
+
+else: 
+    print("Esse programa esta rodando indiretamente em outro modulo")
+    '''
+
+#def hello():
+#    print("Hello")
+
+# FIM #
+
+# Time Module #
+# Epoch : a data e o tempo que o computador mede o tempo do sistema
+
+#import time 
+
+#print(time.ctime(0)) #Para encontrar o epoch do seu sistema, esse metodo ira converter o tempo que inicialmente é em segundos e converter para uma string legivel, obsÇ nao entendi muito bem a utilidade
+
+#print(time.time( )) #Retorna os segundos atuais desde o epoch
+
+#print(time.ctime(time.time()))
+
+
+#time_object = time.localtime() #Data/tempo
+#time_object = time.gmtime() #UTC time
+#print(time_object) #
+#local_time = time.strftime("%B %d %Y %H:%M:%S", time_object) #Printando data tempo horario bonito
+#print(local_time)
+
+#time_string = "2 Fevereiro, 2022"
+#time_object = time.strptime(time_string,"%d %B, %Y")
+#print(time_object)
+
+# FIM #
+
+# Output colorido #
+
+'''
+from colorama import Fore
+
+print(Fore.BLUE+"Hello World !")
+'''
+
+# FIM #
