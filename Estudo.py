@@ -1480,3 +1480,118 @@ print(Fore.BLUE+"Hello World !")
 '''
 
 # FIM #
+
+# Threading #  : Neste exemplo a função main tem o papel de criar mais 3 threads, e assim há a possibilidade de seccionar cada função para um trhead, 
+#                elas rodam simultateamente mas não em paralelo
+
+# cpu bound = programa/tarefa que ocupa maior parte do seu tempo esperando por eventos internos (CPU intensive)
+#             use multiprocessamento 
+
+# io bound = programa/tarefa que ocupa maior parte do tempo esperando por eventos externos (User input)
+#            use multithreading
+
+
+"""
+import threading
+import time
+
+def eat():
+    time.sleep(3)
+    print("You eat breakfast")
+
+def drink():
+    time.sleep(4)
+    print("You drank something")
+
+def study():
+    time.sleep(5)
+    print("You studied")
+
+x = threading.Thread(target=eat, args=())
+x.start()
+
+y = threading.Thread(target=drink, args=())
+y.start()
+
+z = threading.Thread(target=study, args=())
+z.start()
+
+x.join()  # A função join faz com que o thread espeficicado sincronize com a main, assim o main thread só completara sua função quando um thread especifico completar sua função.
+
+#eat()
+#drink()
+#study()
+
+print(threading.active_count())
+print(threading.enumerate())
+print(time.perf_counter())
+"""
+
+# FIM #
+
+# Daemon threads #  = um thread que roda em background, nao e importante para a execução do programa
+#                     seu programa nao ira esperar pelo daemon threads para completar antes de sair
+#                     non-daemon threads nao podem ser normamelmente "mortos", ficam "vivos" até sua execução completar
+#                     O programa que esta sendo executado em uma daemon thread só "morrera" quando a função main concluir seu papel
+"""
+import threading
+import time
+
+def timer():
+    print()
+    print()
+    count = 0
+    while True:
+        time.sleep(1)
+        count += 1
+        print("Logged in for : ", count, "seconds")
+
+x = threading.Thread(target=timer, daemon= True)
+x.start()
+
+print(x. isDaemon())
+
+answer = input("Do you wish to exit ?")
+
+"""
+
+# FIM #
+
+# Multiprocessing # : rodar tarefar em paralelo em diferentes nucleos do cpu
+#                     multiprocessamento : melhor para tarefas vinculadas ao processador (alto uso de cpu)
+#                     multithreading : melhor para tarefas vinculadas a io (otimizada a espera de respostas)
+
+# obs : por algum motivo que desconheco nao deu certo
+"""
+from multiprocessing import Process, cpu_count
+import time
+
+def counter(num):
+    count = 0
+    while count < num:
+        count += 1
+
+def main():
+    a = Process(target=counter, args=(25000000,))
+    b = Process(target=counter, args=(25000000,))
+    c = Process(target=counter, args=(25000000,))
+    d = Process(target=counter, args=(25000000,))
+
+    a.start() 
+    b.start() 
+    c.start() 
+    d.start() 
+
+    a.join()
+    b.join()
+    c.join()
+    d.join()
+
+    print("Finished in : ", time.perf_counter(), "seconds")
+
+if __name__ == "__main__":
+    main()
+"""
+
+# FIM #
+
