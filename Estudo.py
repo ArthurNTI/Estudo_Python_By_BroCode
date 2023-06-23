@@ -1595,3 +1595,53 @@ if __name__ == "__main__":
 
 # FIM #
 
+# Gui Windows #
+
+# Widgets : GUI elements : buttons, textboxes, labels, images
+# windows : serves as a container to hold or contain these widgets
+
+"""
+from tkinter import *
+
+window = Tk() #Fundamenta a instancia de uma janela
+window.geometry("420x420") #Define a resolução da janela
+window.title("Testando") #Define o nome da janela
+
+icon = PhotoImage(file="Banner.png") #Define o arquivo parxa ser usado como icone
+window.iconphoto(True,icon) #Para inserir alguma foto como icone, precisa tranformala em "photoimage"
+window.config(background="pink") #Define a cor de fundo
+
+window.mainloop() #Coloca uma janela na tela do computador , espera por eventos
+"""
+
+# FIM #
+
+# Labels # : é a area de um widget que armazena texto e/ou uma imagem dentro de uma janela
+# fg = cor do texto
+# bg = cor de fundo
+# relief = borda customizada
+# bd = tamanho da borda 
+# padx = distancia entre a borda das letras no eixo x
+# pody = disatncia entre a borda das letras no eixo y
+# image = define uma imagem
+# compund = define onde a imagem aparecera
+
+"""
+from tkinter import *
+
+window = Tk( )
+
+photo = PhotoImage(file=('C:\\Users\\Artu\\Desktop\\Banner.png')) #Inserindo a foto na pasta do programa tambem funciona
+
+#label = Label(window,text="Hello world") #Criando o label
+label = Label(window,text="Hello World !",font=('Arial',40,'bold'), fg='green', bg=('black'), relief=(RAISED), bd =30, padx=20, pady=20, image= photo, compound='bottom') #Texto com customizacoes 
+label.pack() #Aloca o label na janela, por padrao se alinha ao centro
+#label.place(x=0,y=0) Define onde o texto vai aparecer por coordenadas
+
+window.mainloop()
+"""
+
+# FIM # 
+
+# Buttons # 
+
