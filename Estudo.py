@@ -1645,3 +1645,33 @@ window.mainloop()
 
 # Buttons # 
 
+# activeforeground = cor do botao ativo
+# activebackground = cor de fundo ao clicar
+
+from tkinter import *
+
+count = 0
+
+window = Tk()
+
+def click():
+    global count
+    count+=1
+    print(count)
+
+photo = PhotoImage(file='like.png')
+
+button = Button(window,
+                text = "Click me",
+                command=click,
+                font=("Comic Sans",30),
+                fg="green",
+                bg="black",
+                activeforeground="green", 
+                activebackground="pink", #Cor de fundo ao clicar no botao
+                state=ACTIVE, #DISABLED = desativa o botao
+                image=photo,
+                compound='bottom') 
+button.pack()
+
+window.mainloop()
