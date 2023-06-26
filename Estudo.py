@@ -1635,7 +1635,6 @@ photo = PhotoImage(file=('C:\\Users\\Artu\\Desktop\\Banner.png')) #Inserindo a f
 
 #label = Label(window,text="Hello world") #Criando o label
 label = Label(window,text="Hello World !",font=('Arial',40,'bold'), fg='green', bg=('black'), relief=(RAISED), bd =30, padx=20, pady=20, image= photo, compound='bottom') #Texto com customizacoes 
-label.pack() #Aloca o label na janela, por padrao se alinha ao centro
 label.pack() #Aloca o label na janela, porpadrao se alinha ao centro
 #label.place(x=0,y=0) Define onde o texto vai aparecer por coordenadas
 
