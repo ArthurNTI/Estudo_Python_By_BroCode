@@ -1663,7 +1663,7 @@ def click():
 photo = PhotoImage(file='like.png')
 
 button = Button(window,
-                text = "Click me",
+                text = "Click me", g
                 command=click,
                 font=("Comic Sans",30),
                 fg="green",
@@ -1682,7 +1682,56 @@ window.mainloop()
 
 # Entrybox #
  
- 
+from tkinter import *
+from PIL import Image, ImageDraw
+import pygame
+
+# Configurações da aplicação
+CANVAS_WIDTH = 800
+CANVAS_HEIGHT = 600
+DRAW_COLOR = "black"
+DRAW_SIZE = 5
+
+# Variáveis globais
+root = Tk()
+canvas = Canvas(root, width=CANVAS_WIDTH, height=CANVAS_HEIGHT, bg="white")
+image = Image.new("RGB", (CANVAS_WIDTH, CANVAS_HEIGHT), "white")
+draw = ImageDraw.Draw(image)
+last_x = 0
+last_y = 0
+
+# Funções de desenho
+def paint(event):
+    global last_x, last_y
+    x, y = event.x, event.y
+    canvas.create_line((last_x, last_y, x, y), fill=DRAW_COLOR, width=DRAW_SIZE)
+    draw.line((last_x, last_y, x, y), fill=DRAW_COLOR, width=DRAW_SIZE)
+    last_x, last_y = x, y
+
+def start_paint(event):
+    global last_x, last_y
+    last_x, last_y = event.x, event.y
+
+def save_image():
+    filename = "drawing.png"
+    image.save(filename)
+    print("Imagem salva como", filename)
+
+# Configuração da interface gráfica
+root.title("Aplicativo de Desenho")
+canvas.pack()
+
+# Configuração do mouse
+canvas.bind("<B1-Motion>", paint)
+canvas.bind("<Button-1>", start_paint)
+
+# Configuração dos botões
+save_button = Button(root, text="Salvar", command=save_image)
+save_button.pack()
+
+# Iniciar a aplicação
+root.mainloop()
+
  
  
  
