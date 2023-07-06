@@ -1681,9 +1681,16 @@ window.mainloop()
 # FIM #
 
 # Entrybox #
+
+from tkinter import *
  
+# Entry widget : textbox that accepts a single line of user input
+
+window = Tk()
+
+entry = Entry(window,font=("TimesNewRoman",50))
+entry.pack()
  
- 
- 
+window.mainloop() 
  
  
