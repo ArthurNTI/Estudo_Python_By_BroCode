@@ -103,7 +103,7 @@
 # pnome = nome[:3] #Pegar string apartir de um ponto exclusivo [inicio:fim] sendo que, inicio é inclusivo e fim é exclusivo.
 # unome = nome[5:]
 # tnome = nome[:9:2] #Pega de 2 em 2 caracteres da string
-# fuckname = nome[::-1] #Reverte o nome
+# fuckname = nome[::-1] #Inverte o nome
 # print(fuckname)
 
 # Slicing function
@@ -329,7 +329,7 @@ print(v2)'''
 
 # FIM #
 
-# SETS # # Desanexados, nao possem ordem e nao pode ser duplicado.
+# Sets #  Desanexados, nao possuem ordem e nao pode conter valores duplicados.
 
 # utensilios = {"Garfo", "Faca", "Colher"}
 # louças = {"Prato", "Copos", "Vasilia","Faca"}
@@ -1682,6 +1682,7 @@ window.mainloop()
 
 # Entrybox #
 
+'''
 from tkinter import *
  
 # Entry widget : textbox that accepts a single line of user input
@@ -1693,4 +1694,7 @@ entry.pack()
  
 window.mainloop() 
  
- 
+ '''
+
+for i,x in enumerate(['A','B','C']):
+    print(i,x)
